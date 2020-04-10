@@ -14,7 +14,7 @@ public class RedBoxMachine
    //Create an instance variable to hold all of the DVDs.
 
    /** the list of DVDs */
-   
+   private ArrayList<String> dvdList = new ArrayList<String>();
    /** Constructs a Redbox Machine and fills it with DVDs
     *  Reads the file MovieList.txt so make sure that the
     *  file is in the same folder as the RedboxMachine.class
@@ -74,6 +74,7 @@ public class RedBoxMachine
    public DVD returnMovie(String title)
    {
       // Complete the method to return a movie.
+      
    }
    
    /** This method fills the machine with movies. You do not have
