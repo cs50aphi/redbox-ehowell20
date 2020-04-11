@@ -27,12 +27,13 @@ public class RedBoxUI
             ArrayList<String> availableTitles = new ArrayList<String>();
             availableTitles = rm.getAvailableMovies();
             System.out.println(availableTitles);
-      
+            System.out.println();
             System.out.println("PRESS ENTER TO GO BACK TO THE MENU");
             sn.nextLine();         
          }
          else if(option == 2)
          {
+            System.out.println();
             System.out.println("What movie would you like to rent?");
             title = sn.nextLine();
 
@@ -48,6 +49,9 @@ public class RedBoxUI
             {
                System.out.println("The movie " + title + " could not be rented");
             }
+            
+            System.out.println("PRESS ENTER TO GO BACK TO THE MENU");
+            sn.nextLine();  
          }
          else if(option == 3)
          {
@@ -58,6 +62,9 @@ public class RedBoxUI
             // message after the movie has been returned.
             DVD returned = rm.returnMovie(title);
             System.out.println("The movie " + title + " has been returned");
+            
+            System.out.println("PRESS ENTER TO GO BACK TO THE MENU");
+            sn.nextLine();  
          }
          else if(option == 4)
          {
@@ -75,6 +82,9 @@ public class RedBoxUI
             {
                System.out.println(title + " had been found");
             }
+            
+            System.out.println("PRESS ENTER TO GO BACK TO THE MENU");
+            sn.nextLine();  
          }
          else if(option == 5)
          {

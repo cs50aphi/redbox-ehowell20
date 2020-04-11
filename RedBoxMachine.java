@@ -25,12 +25,7 @@ public class RedBoxMachine
     */
    public RedBoxMachine()
    {
-      // Complete the constructor.
-      // get dvd titles and add them to an arraylist
-      for (int i = 0; i < dvdList.size(); i++)
-      {
-         titleList.add((dvdList.get(i)).getTitle());
-      }
+      // Complete the constructor
       // Leave this method. It will fill the machine with DVDs.
       fillMachine();
    }
@@ -109,6 +104,7 @@ public class RedBoxMachine
       else
       {
          dvdList.add(new DVD(title));
+         titleList.add(title);
          return dvdList.get(dvdList.size()-1);
       }
    }
