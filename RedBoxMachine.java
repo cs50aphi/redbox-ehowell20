@@ -14,7 +14,7 @@ public class RedBoxMachine
    //Create an instance variable to hold all of the DVDs.
 
    /** the list of DVDs */
-   private ArrayList<String> dvdList = new ArrayList<String>();
+   private ArrayList<DVD> dvdList = new ArrayList<DVD>();
 
   /** Constructs a Redbox Machine and fills it with DVDs
     *  Reads the file MovieList.txt so make sure that the
@@ -40,6 +40,7 @@ public class RedBoxMachine
       // Complete the method to search for a movie.
       // If placement is -1, then the movie isn't there.
       // Find the index of i if the movie is there.
+      return dvdList.indexOf(title);
    }
 
    /** Returns the titles of all available DVD's in
@@ -50,6 +51,12 @@ public class RedBoxMachine
    public ArrayList<String> getAvailableMovies()
    {
       // Complete the method to get all available movie titles.
+      ArrayList<String> availMovies = new ArrayList<String>();
+      for (int i = 0; i < dvdList.size(); i++)
+      {
+         availMovies.add((dvdList.get(i)).getTitle());
+      }
+      return availMovies;
 
    }
 
@@ -63,6 +70,17 @@ public class RedBoxMachine
    public boolean rent(String title)
    {
       // Complete the method to rent a movie.
+      if (dvdList.contains(title))
+      {
+         int getDvd = dvdList.indexOf(title);
+         DVD dvdRent = dvdList.get(getDvd);
+         dvdRent.decrementCopies();
+         return true;
+      }
+      else
+      {
+         return false;
+      }
    }
 
    /** Allows a customer to return a movie. When the movie is returned, the number
@@ -74,16 +92,17 @@ public class RedBoxMachine
    public DVD returnMovie(String title)
    {
       // Complete the method to return a movie.
-      DVD dvdReturn = new DVD(title);
+      int getDvd = dvdList.indexOf(title);
       if (dvdList.contains(title))
       {
+         DVD dvdReturn = dvdList.get(getDvd);
          dvdReturn.incrementCopies();
       }
       else
       {
-         dvdList.add(title);
+         dvdList.add(new DVD(title));
       }
-      return dvdReturn;
+      return dvdList.get(getDvd);
    }
 
    /** This method fills the machine with movies. You do not have

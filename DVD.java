@@ -16,7 +16,7 @@ public class DVD
    public DVD(String t)
    {
       title = t;
-      copies = 3;
+      copies = 1;
    }
 
    /** Increments the number of available copies of this DVD.
