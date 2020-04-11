@@ -91,18 +91,19 @@ public class RedBoxMachine
     */
    public DVD returnMovie(String title)
    {
-      // Complete the method to return a movie.
       int getDvd = dvdList.indexOf(title);
-      if (dvdList.contains(title))
+      // Complete the method to return a movie.
+      if (getDvd != -1)
       {
          DVD dvdReturn = dvdList.get(getDvd);
          dvdReturn.incrementCopies();
+         return dvdReturn;
       }
       else
       {
          dvdList.add(new DVD(title));
+         return dvdList.get(dvdList.size()-1);
       }
-      return dvdList.get(getDvd);
    }
 
    /** This method fills the machine with movies. You do not have
