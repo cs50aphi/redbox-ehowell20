@@ -15,6 +15,8 @@ public class RedBoxMachine
 
    /** the list of DVDs */
    private ArrayList<DVD> dvdList = new ArrayList<DVD>();
+   // list of titles
+   private ArrayList<String> titleList = new ArrayList<String>();
 
   /** Constructs a Redbox Machine and fills it with DVDs
     *  Reads the file MovieList.txt so make sure that the
@@ -24,6 +26,11 @@ public class RedBoxMachine
    public RedBoxMachine()
    {
       // Complete the constructor.
+      // get dvd titles and add them to an arraylist
+      for (int i = 0; i < dvdList.size(); i++)
+      {
+         titleList.add((dvdList.get(i)).getTitle());
+      }
       // Leave this method. It will fill the machine with DVDs.
       fillMachine();
    }
@@ -40,7 +47,7 @@ public class RedBoxMachine
       // Complete the method to search for a movie.
       // If placement is -1, then the movie isn't there.
       // Find the index of i if the movie is there.
-      return dvdList.indexOf(title);
+      return titleList.indexOf(title);
    }
 
    /** Returns the titles of all available DVD's in
@@ -51,12 +58,7 @@ public class RedBoxMachine
    public ArrayList<String> getAvailableMovies()
    {
       // Complete the method to get all available movie titles.
-      ArrayList<String> availMovies = new ArrayList<String>();
-      for (int i = 0; i < dvdList.size(); i++)
-      {
-         availMovies.add((dvdList.get(i)).getTitle());
-      }
-      return availMovies;
+      return titleList;
 
    }
 
@@ -70,11 +72,16 @@ public class RedBoxMachine
    public boolean rent(String title)
    {
       // Complete the method to rent a movie.
-      if (dvdList.contains(title))
+      if (titleList.contains(title))
       {
-         int getDvd = dvdList.indexOf(title);
+         int getDvd = titleList.indexOf(title);
          DVD dvdRent = dvdList.get(getDvd);
          dvdRent.decrementCopies();
+         if (dvdRent.getNumCopies() == 0)
+         {
+            titleList.remove(getDvd);
+            dvdList.remove(getDvd);
+         }
          return true;
       }
       else
@@ -91,7 +98,7 @@ public class RedBoxMachine
     */
    public DVD returnMovie(String title)
    {
-      int getDvd = dvdList.indexOf(title);
+      int getDvd = titleList.indexOf(title);
       // Complete the method to return a movie.
       if (getDvd != -1)
       {
