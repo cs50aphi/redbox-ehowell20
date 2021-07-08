@@ -27,18 +27,31 @@ public class RedBoxUI
             ArrayList<String> availableTitles = new ArrayList<String>();
             availableTitles = rm.getAvailableMovies();
             System.out.println(availableTitles);
-      
+            System.out.println();
             System.out.println("PRESS ENTER TO GO BACK TO THE MENU");
             sn.nextLine();         
          }
          else if(option == 2)
          {
+            System.out.println();
             System.out.println("What movie would you like to rent?");
             title = sn.nextLine();
 
             // Complete the code to rent a movie. This code should let the user
-            // know if the movie was rented successfully or not (not could occur if
+            // know if the movie was rented successfully or not (could occur if
             // the movie they enter is not available).
+            boolean rented = rm.rent(title);
+            if (rented)
+            {
+               System.out.println("The movie " + title + " was rented successfully");
+            }
+            else
+            {
+               System.out.println("The movie " + title + " could not be rented");
+            }
+            
+            System.out.println("PRESS ENTER TO GO BACK TO THE MENU");
+            sn.nextLine();  
          }
          else if(option == 3)
          {
@@ -47,7 +60,11 @@ public class RedBoxUI
             
             // Complete the code to return a movie. Make sure to include a
             // message after the movie has been returned.
-         
+            DVD returned = rm.returnMovie(title);
+            System.out.println("The movie " + title + " has been returned");
+            
+            System.out.println("PRESS ENTER TO GO BACK TO THE MENU");
+            sn.nextLine();  
          }
          else if(option == 4)
          {
@@ -56,7 +73,18 @@ public class RedBoxUI
             
             // Complete the code to search for a movie.  Make sure to include
             // messages that inform the user whether the movie was found or not.
-         
+            int find = rm.searchForMovie(title);
+            if (find == -1)
+            {
+               System.out.println(title + " could not be found");
+            }
+            else
+            {
+               System.out.println(title + " had been found");
+            }
+            
+            System.out.println("PRESS ENTER TO GO BACK TO THE MENU");
+            sn.nextLine();  
          }
          else if(option == 5)
          {
